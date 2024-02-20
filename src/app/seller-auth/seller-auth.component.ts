@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SellerAuthComponent implements OnInit {
 
-  constructor() { }
+  constructor(private sellerService: SellerService,
+    private router: Router) { }
 
   ngOnInit(): void {
+  }
+  
+  SignUp(seller: User) {
+    console.log(seller);
+    this.sellerService.SignUp(seller).subscribe((result) => {
+      if (result) {
+        this.router.navigate(['seller-home']);
+      }
+    });
   }
 
 }
